@@ -120,20 +120,20 @@ const Product = () => {
     const [color,setColor] = useState("")
     const [size,setSize] = useState("")
     const dispatch = useDispatch();
-    const getProduct = async ()=>{
-        try{
-            const res = await publicRequest.get("/product/find/"+id)
-            setProduct(res.data)
-            console.log("getProduct =====",res.data)
-        }catch{
 
-        }
-    };
     useEffect(()=>{
-        
+        const getProduct = async ()=>{
+            try{
+                const res = await publicRequest.get("/product/find/"+id)
+                setProduct(res.data)
+                console.log("getProduct",res.data)
+            }catch{
+
+            }
+        };
         getProduct()
         
-    },[]);
+    },[id]);
     //console.log("color",product.color);
     const itemQuantity = (type) =>{
         if(type === "dec"){
